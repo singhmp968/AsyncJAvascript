@@ -4,7 +4,9 @@ const path = require('path');
 let finalJson = []
 let student = {}
 
-// // using promise all
+
+/*********************Using Promise************************** */
+// // using promise
 // module.exports.home =async function(req,res){
 //   let studentPath = path.join(path.join(__dirname ,'../'),'assets/Example1/students.csv')    
 //   let coursePath = path.join(path.join(__dirname ,'../'),'assets/Example1/courses.csv')    
@@ -12,28 +14,71 @@ let student = {}
 //   let testPath = path.join(path.join(__dirname ,'../'),'assets/Example1/tests.csv')    
  
 //   try {
-//     let promisrSet = [];
 // arr = [studentPath,coursePath,marksPath,testPath]
+//     // let studentJSON = getJsonData(studentPath)
+//     // let courseJSON = getJsonData(coursePath)
+//     // let markJSON = getJsonData(marksPath)
+//     // let testJSON = getJsonData(testPath);
 //     for(let i =0;i<arr.length;i++){
-//     let p = await new Promise((myResolve, myReject)=>{
-//       try {
-//         const result = []
-//          fs.createReadStream(pathvalue).pipe(csv({}))
-//         .on('data', (data)=>result.push(data))
-//         .on('end', ()=>{
-//             console.log(result)
-//             return result
-//           })
-        
-           
-        
-//       } catch (error) {
-//          myReject('error',error);
-//       }
-//     })
-    
+//     getJsonData(arr[i]).then(
+//       function(value) { 
+//         JsonValue = value;
+//         finalJson.push(JsonValue)
+//        console.log('adtas',JsonValue)
+//     },
+//     function(error) { console.log('asdas',error)
+//   })
+//   .catch(function(errorMessage) {
+//      //error handler function is invoked
+//       console.log(errorMessage);
+//   });
+// }
+//  console.log('dasda',finalJson)
+// return res.send('<h1>Welcome bro</h1>')   
+//     }  catch (error) {
+//         console.log('dasdas',error)
 //     }
-  
+
+// }
+
+// async function getJsonData(pathvalue){
+//   return  new Promise(function(myResolve, myReject) {
+//    try {
+//     const result = []
+//      fs.createReadStream(pathvalue).pipe(csv({}))
+//     .on('data', (data)=>result.push(data))
+//     .on('end', ()=>{
+        
+//         //  console.log(result)
+//         myResolve(result)
+//       })
+
+    
+//   } catch (error) {
+//      myReject('error',error);
+//   }
+// });
+//   }
+/***********************Promise********************************* */
+/**********************promise all*********************** */
+// // using promise all
+// module.exports.home =async function(req,res){
+//   let studentPath = path.join(path.join(__dirname ,'../'),'assets/Example1/students.csv')    
+//   let coursePath = path.join(path.join(__dirname ,'../'),'assets/Example1/courses.csv')    
+//   let marksPath = path.join(path.join(__dirname ,'../'),'assets/Example1/marks.csv')    
+//   let testPath = path.join(path.join(__dirname ,'../'),'assets/Example1/tests.csv')    
+//  finalJson = []
+//   try {
+//     let promisrSet = [];
+//     arr = [studentPath,coursePath,marksPath,testPath]
+//     for(let i =0;i<arr.length;i++){
+//       let p = getJsonData(arr[i])
+//       finalJson.push(p);
+//     }
+//   console.log(finalJson)
+//   await Promise.all(finalJson).then((val)=>{
+//     console.log('WOWOWOWOW',val)
+//   })
 // return res.send('<h1>Welcome bro</h1>')   
 //     }  catch (error) {
 //         console.log('dasdas',error)
@@ -47,86 +92,19 @@ let student = {}
 //      fs.createReadStream(pathvalue).pipe(csv({}))
 //     .on('data', (data)=>result.push(data))
 //     .on('end', ()=>{
-        
-//         //  console.log(result)
-//         myResolve(result)
+//           myResolve(result)
 //       })
-    
-       
-    
-//   } catch (error) {
+//       } catch (error) {
 //      myReject('error',error);
 //   }
 // });
-//   }
+// }
 
 
-/*********************Using Promise************************** */
-// using promise
-module.exports.home =async function(req,res){
-  let studentPath = path.join(path.join(__dirname ,'../'),'assets/Example1/students.csv')    
-  let coursePath = path.join(path.join(__dirname ,'../'),'assets/Example1/courses.csv')    
-  let marksPath = path.join(path.join(__dirname ,'../'),'assets/Example1/marks.csv')    
-  let testPath = path.join(path.join(__dirname ,'../'),'assets/Example1/tests.csv')    
- 
-  try {
-arr = [studentPath,coursePath,marksPath,testPath]
-    // let studentJSON = getJsonData(studentPath)
-    // let courseJSON = getJsonData(coursePath)
-    // let markJSON = getJsonData(marksPath)
-    // let testJSON = getJsonData(testPath);
-    for(let i =0;i<arr.length;i++){
-    getJsonData(arr[i]).then(
-      function(value) { 
-        JsonValue = value;
-        finalJson.push(JsonValue)
-       console.log('adtas',JsonValue)
-    },
-    function(error) { console.log('asdas',error)
-  })
-  .catch(function(errorMessage) {
-     //error handler function is invoked
-      console.log(errorMessage);
-  });
-}
- console.log('dasda',finalJson)
-return res.send('<h1>Welcome bro</h1>')   
-    }  catch (error) {
-        console.log('dasdas',error)
-    }
-
-}
-
-
-
-
-async function getJsonData(pathvalue){
-  return  new Promise(function(myResolve, myReject) {
-   try {
-    const result = []
-     fs.createReadStream(pathvalue).pipe(csv({}))
-    .on('data', (data)=>result.push(data))
-    .on('end', ()=>{
-        
-        //  console.log(result)
-        myResolve(result)
-      })
-    
-       
-    
-  } catch (error) {
-     myReject('error',error);
-  }
-});
-  }
-
-
-
+/**********************promise all*********************** */
 
 /**********************callback*********************** */
-
 // using callback
-
 // const csv = require('csv-parser');
 // const fs = require('fs')
 // const path = require('path');
@@ -204,3 +182,65 @@ async function getJsonData(pathvalue){
 // //       myReject('error');  
 // //     });
 
+/**************promise and call back*********Need to ask to*** */
+// // using promise
+// module.exports.home =async function(req,res){
+//   let studentPath = path.join(path.join(__dirname ,'../'),'assets/Example1/students.csv')    
+//   let coursePath = path.join(path.join(__dirname ,'../'),'assets/Example1/courses.csv')    
+//   let marksPath = path.join(path.join(__dirname ,'../'),'assets/Example1/marks.csv')    
+//   let testPath = path.join(path.join(__dirname ,'../'),'assets/Example1/tests.csv')    
+ 
+//   try {
+// arr = [studentPath,coursePath,marksPath,testPath]
+//     // let studentJSON = getJsonData(studentPath)
+//     // let courseJSON = getJsonData(coursePath)
+//     // let markJSON = getJsonData(marksPath)
+//     // let testJSON = getJsonData(testPath);
+//     for(let i =0;i<arr.length;i++){
+//     getJsonData(arr[i]).then(
+//       function(value) { 
+//         JsonValue = value;
+//         finalJson.push(JsonValue)
+        
+//     },
+//     function(error) { console.log('asdas',error)
+//   })
+//   .catch(function(errorMessage) {
+//      //error handler function is invoked
+//       console.log(errorMessage);
+//   });
+
+// }
+//  asyncCallBack(finalJson,()=>{
+// console.log('asdas',finalJson)
+// })
+//   // console.log('dasda',finalJson)
+// return res.send('<h1>Welcome bro</h1>')   
+//     }  catch (error) {
+//         console.log('dasdas',error)
+//     }
+
+// }
+// function asyncCallBack(finalJson,callback){
+//   callback()
+//   // console.log('dasdas',finaldata)
+// }
+
+// async function getJsonData(pathvalue){
+//   return  new Promise(function(myResolve, myReject) {
+//    try {
+//     const result = []
+//      fs.createReadStream(pathvalue).pipe(csv({}))
+//     .on('data', (data)=>result.push(data))
+//     .on('end', ()=>{
+        
+//         //  console.log(result)
+//         myResolve(result)
+//       })
+
+    
+//   } catch (error) {
+//      myReject('error',error);
+//   }
+// });
+//   }
